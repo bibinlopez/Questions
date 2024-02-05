@@ -52,17 +52,15 @@ const questionAnswer = async (req, res) => {
 };
 
 const updateFn = async (req, res) => {
-  let { question } = req.body;
+  const { id } = req.params;
 
-  let questinIndex;
   const result = data.find((item, index) => {
     questinIndex = index;
-    return item.question === question;
+    return item.id == id;
   });
 
   if (!result) {
-    console.log('no result');
-    throw new Error('no question');
+    throw new Error(`No document in this id: ${id}`);
   }
 
   data[questinIndex] = {
@@ -74,16 +72,16 @@ const updateFn = async (req, res) => {
 };
 
 const deleteFn = async (req, res) => {
-  const { question } = req.body;
+  const { id } = req.params;
+  console.log(id);
   let questinIndex;
   const result = data.find((item, index) => {
     questinIndex = index;
-    return item.question === question;
+    return item.id == id;
   });
-
+  console.log(result);
   if (!result) {
-    console.log('no result');
-    throw new Error('no question');
+    throw new Error(`No document in this id: ${id}`);
   }
 
   data.splice(questinIndex, 1);

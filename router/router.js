@@ -11,8 +11,8 @@ const {
 
 router.get('/', getFilter);
 router.post('/', questionAnswer);
-router.put('/', updateFn);
-router.delete('/', deleteFn);
+router.put('/:id', updateFn);
+router.delete('/:id', deleteFn);
 router.post('/upload', uploadFn);
 
 module.exports = router;
