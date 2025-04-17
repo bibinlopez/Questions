@@ -3,6 +3,7 @@ const router = express.Router();
 
 const {
   getFilter,
+  getFn,
   questionAnswer,
   updateFn,
   deleteFn,
@@ -10,6 +11,7 @@ const {
 } = require('../controller/controller');
 
 router.get('/', getFilter);
+router.get('/:id',getFn);
 router.post('/', questionAnswer);
 router.put('/:id', updateFn);
 router.delete('/:id', deleteFn);

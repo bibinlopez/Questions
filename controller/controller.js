@@ -7,6 +7,23 @@ const addId = async (req, res, next) => {
   next();
 };
 
+const getFn = async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  let questinIndex;
+  const result = data.find((item, index) => {
+    questinIndex = index;
+    return item.id == id;
+  });
+  console.log(result);
+  if (!result) {
+    throw new Error(`No document in this id: ${id}`);
+  }
+
+
+  res.status(200).json({ success: true ,data: result });
+};
+
 const getFilter = async (req, res) => {
   let { question, answer, skip, limit } = req.query;
 
@@ -95,6 +112,7 @@ const uploadFn = async (req, res) => {
 
 module.exports = {
   addId,
+  getFn,
   getFilter,
   questionAnswer,
   updateFn,
